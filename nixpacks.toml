@@ -1,5 +1,8 @@
 [phases.setup]
-nixPkgs = ["php82", "php82Extensions.mysqli", "php82Extensions.pdo_mysql", "apache"]
+nixPkgs = ["php82", "php82Extensions.mysqli", "php82Extensions.pdo_mysql", "php82Extensions.mbstring", "php82Extensions.gd", "apache"]
+
+[phases.build]
+cmds = ["mkdir -p /app/application/logs && chmod 777 /app/application/logs"]
 
 [start]
-cmd = "apache2ctl -D FOREGROUND"
+cmd = "php -S 0.0.0.0:$PORT -t /app"
