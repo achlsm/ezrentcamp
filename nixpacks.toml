@@ -1,8 +1,8 @@
 [phases.setup]
-nixPkgs = ["php82", "php82Extensions.mysqli", "php82Extensions.pdo_mysql", "php82Extensions.mbstring", "php82Extensions.gd", "apache"]
+nixPkgs = []
 
 [phases.build]
-cmds = ["mkdir -p /app/application/logs && chmod 777 /app/application/logs"]
+cmds = ["echo 'extension=mysqli\nextension=pdo_mysql\nextension=mbstring' > /usr/local/etc/php/conf.d/custom.ini"]
 
 [start]
-cmd = "php -S 0.0.0.0:$PORT -t /app"
+cmd = "/start-container.sh"
